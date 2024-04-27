@@ -124,5 +124,6 @@ return [
     ],
 
     'supported_locales' => ['en', 'tr'],
+    'port' => env('APP_PORT', 8011),
 
 ];

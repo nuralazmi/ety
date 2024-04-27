@@ -60,6 +60,9 @@ class FetchExchangeData extends Command
 
         $this->exchange_service->clearCache(now()->toDateString());
         $this->info('Exchange data fetched and stored successfully.');
+
+        $route = 'http://127.0.0.1:'.config('app.port').'/api/exchange?date=2024-04-27&lang=tr';
+        $this->info('You can see it from this route '. $route);
     }
 
     /**

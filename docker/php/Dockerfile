@@ -36,9 +36,6 @@ WORKDIR /var/www/html
 # Copy existing application directory contents
 COPY . /var/www/html
 
-# Install all PHP dependencies
-#RUN composer install
-
 CMD ["php-fpm"]
 
 EXPOSE 9000
