@@ -6,6 +6,7 @@ use App\Interfaces\ExchangeAdapterInterface;
 use App\Interfaces\ExchangeInterface;
 use Illuminate\Console\Command;
 use App\Services\ExchangeApiAdapters\FirstExchangeApiAdapter;
+use App\Services\ExchangeApiAdapters\SecondExchangeApiAdapter;
 
 class FetchExchangeData extends Command
 {
@@ -39,6 +40,7 @@ class FetchExchangeData extends Command
     {
         $adapters = [
             new FirstExchangeApiAdapter(),
+            new SecondExchangeApiAdapter(),
         ];
 
         foreach ($adapters as $adapter) {
