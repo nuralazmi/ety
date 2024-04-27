@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use app\Enums\LanguageFileNames;
+use App\Enums\LanguageFileNames;
 use Illuminate\Contracts\Foundation\Application as ApplicationAlias;
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
