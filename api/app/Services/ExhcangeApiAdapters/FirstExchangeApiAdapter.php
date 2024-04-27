@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Services;
+
+
 use App\Interfaces\ExchangeAdapterInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -27,7 +30,7 @@ class FirstExchangeApiAdapter implements ExchangeAdapterInterface
 
     public function getSource(): string
     {
-        return 'first';
+        return 'first_api';
     }
 
     public function transformData(array $data): array
