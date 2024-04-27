@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Interfaces\ExchangeAdapterInterface;
 use App\Interfaces\ExchangeInterface;
 use Illuminate\Console\Command;
-use App\Services\FirstExchangeApiAdapter;
+use App\Services\ExchangeApiAdapters\FirstExchangeApiAdapter;
 
 class FetchExchangeData extends Command
 {
