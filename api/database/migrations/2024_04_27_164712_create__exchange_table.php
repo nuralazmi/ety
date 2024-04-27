@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('exchanges', function (Blueprint $table) {
             $table->id();
+            $table->char('code', 5);
+            $table->char('symbol', 4);
+            $table->double('price');
+            $table->string('source', 15);
             $table->timestamps();
         });
     }
