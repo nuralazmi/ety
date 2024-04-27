@@ -1,0 +1,5 @@
+CREATE DATABASE IF NOT EXISTS ety_case;
+
+USE ety_case;
+
+CREATE TABLE IF NOT EXISTS ety_case_test_table_docker (testid INT AUTO_INCREMENT PRIMARY KEY);
