@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Interfaces\ExchangeAdapterInterface;
 use App\Interfaces\ExchangeInterface;
+use App\Services\ExchangeService;
 use Illuminate\Console\Command;
 use App\Services\ExchangeApiAdapters\FirstExchangeApiAdapter;
 use App\Services\ExchangeApiAdapters\SecondExchangeApiAdapter;
@@ -30,13 +31,17 @@ class FetchExchangeData extends Command
 
     protected ExchangeInterface $exchange_repository;
 
+    protected ExchangeService $exchange_service;
+
     /**
      * @param ExchangeInterface $exchange_repository
+     * @param ExchangeService $exchange_service
      */
-    public function __construct(ExchangeInterface $exchange_repository)
+    public function __construct(ExchangeInterface $exchange_repository, ExchangeService $exchange_service)
     {
         parent::__construct();
         $this->exchange_repository = $exchange_repository;
+        $this->exchange_service = $exchange_service;
     }
 
     /**
@@ -53,6 +58,7 @@ class FetchExchangeData extends Command
             $this->fetchAndSaveData($adapter);
         }
 
+        $this->exchange_service->clearCache(now()->toDateString());
         $this->info('Exchange data fetched and stored successfully.');
     }
 

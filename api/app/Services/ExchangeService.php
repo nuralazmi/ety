@@ -3,9 +3,16 @@
 namespace App\Services;
 
 use App\Interfaces\ExchangeInterface;
+use Illuminate\Support\Facades\Cache;
 
 class ExchangeService
 {
+
+    /**
+     * @example exchange_data_2024-04-28
+     * @var string
+     */
+    private string $cache_key_text = 'exchange_data_';
 
     /**
      * @var ExchangeInterface
@@ -23,13 +30,25 @@ class ExchangeService
      */
     public function getExchangeData(string $date): array
     {
-        $currencyData = $this->exchange_repository->getByCreatedAt($date, ['symbol', 'price', 'code', 'source']);
-        $cheapestCurrencyInfo = $currencyData->sortBy('price')->first();
+        $currency_data = Cache::remember($this->cache_key_text . $date, now()->addHours(6), function () use ($date) {
+            return $this->exchange_repository->getByCreatedAt($date, ['symbol', 'price', 'code', 'source']);
+        });
+        $cheapest_data = $currency_data->sortBy('price')->first();
 
         return [
             'date' => $date,
-            'current_date_items' => $currencyData,
-            'cheapest' => $cheapestCurrencyInfo
+            'current_date_items' => $currency_data,
+            'cheapest' => $cheapest_data
         ];
     }
+
+    /**
+     * @param $date
+     * @return void
+     */
+    public function clearCache($date = null): void
+    {
+        Cache::forget($this->cache_key_text . $date);
+    }
+
 }
