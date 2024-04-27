@@ -30,12 +30,18 @@ class FetchExchangeData extends Command
 
     protected ExchangeInterface $exchange_repository;
 
+    /**
+     * @param ExchangeInterface $exchange_repository
+     */
     public function __construct(ExchangeInterface $exchange_repository)
     {
         parent::__construct();
         $this->exchange_repository = $exchange_repository;
     }
 
+    /**
+     * @return void
+     */
     public function handle(): void
     {
         $adapters = [
@@ -50,6 +56,10 @@ class FetchExchangeData extends Command
         $this->info('Exchange data fetched and stored successfully.');
     }
 
+    /**
+     * @param ExchangeAdapterInterface $adapter
+     * @return void
+     */
     private function fetchAndSaveData(ExchangeAdapterInterface $adapter): void
     {
         $data = $adapter->fetchAndTransformData();

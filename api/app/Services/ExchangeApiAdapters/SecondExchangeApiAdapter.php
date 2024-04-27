@@ -39,7 +39,7 @@ class SecondExchangeApiAdapter implements ExchangeAdapterInterface
         else $data = $data['data'];
 
         return array_map(function ($item) {
-            if (ExchangeValidator::validate($item, 'second')) {
+            if (ExchangeValidator::validate($item, $this->getSource())) {
                 return [
                     'symbol' => $item['symbol'],
                     'price' => $item['amount'],
