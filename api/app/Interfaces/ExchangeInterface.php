@@ -2,10 +2,13 @@
 
 namespace App\Interfaces;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-
 interface ExchangeInterface
 {
-    //
+    /**
+     * @param array $columns
+     * @param array $data
+     * @return bool
+     */
+    public function updateOrCreate(array $columns, array $data): bool;
+
 }
