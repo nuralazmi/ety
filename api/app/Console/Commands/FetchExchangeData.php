@@ -56,7 +56,11 @@ class FetchExchangeData extends Command
         foreach ($data as $item) {
             if (!$item) continue;
 
-            #TODO db ye kayıt yapılacak
+            $this->exchange_repository->updateOrCreate([
+                'code' => $item['code'],
+                'source' => $source,
+                'created_at' => today(),
+            ], $item);
         }
     }
 }
