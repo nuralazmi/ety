@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
+    cron \
+    nano \
     curl
 
 # Install xdebug extension
@@ -33,9 +35,15 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy existing application directory contents
 COPY . /var/www/html
 
-CMD ["php-fpm"]
+RUN rm -rf /var/lib/apt/lists/*
+COPY crontab /etc/cron.d/crontab
+RUN chmod 0644 /etc/cron.d/crontab
+RUN crontab /etc/cron.d/crontab
+
+RUN touch /var/log/cron.log
+
+CMD bash -c "cron && php-fpm"
 
 EXPOSE 9000
