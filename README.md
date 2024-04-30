@@ -11,6 +11,7 @@ Güncel kur bilgisini veren 2 ayrı api ye istek atarak kur bilgilerini aldıkta
 - Laravel 11
 - Adapter Pattern
 - Repository Pattern
+- Test
 
 ## Bilgilendirme
 
@@ -29,6 +30,7 @@ Terminal ekranında sırasıyla aşağıdaki komutlar çalıştırılması gerek
 - docker exec -it ety_php bash
 - composer install
 - php artisan migrate
+- php artisan test
 - service cron restart
 - (Opsiyonel) php artisan fetch:exchange-data
   - Kur apilere istek atan komut. Ayrıca dil ve tarih parametrelerini de öneri olarak verecektir.
